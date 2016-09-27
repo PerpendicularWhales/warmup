@@ -7,18 +7,18 @@ import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.perpendicularwhales.warmup.components.Sprite;
+import com.perpendicularwhales.warmup.components.SpriteComponent;
 
 @Wire
 public class RenderingSystem extends EntityProcessingSystem {
 
-    protected ComponentMapper<Sprite> spriteMapper;
+    protected ComponentMapper<SpriteComponent> spriteMapper;
 
     private SpriteBatch batch;
     private AssetManager assetManager;
 
     public RenderingSystem() {
-        super(Aspect.all(Sprite.class));
+        super(Aspect.all(SpriteComponent.class));
 
         batch = new SpriteBatch();
     }
@@ -32,9 +32,9 @@ public class RenderingSystem extends EntityProcessingSystem {
     @Override
     protected void process(Entity e) {
         // TODO: somehow draw entity
-        Sprite sprite = spriteMapper.get(e);
+        SpriteComponent spriteComponent = spriteMapper.get(e);
 
-        batch.draw(sprite.texture, 100, 100);
+        batch.draw(spriteComponent.texture, 100, 100);
     }
 
     @Override

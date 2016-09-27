@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.perpendicularwhales.warmup.components.EmptyFieldComponent;
 import com.perpendicularwhales.warmup.components.HexPositionComponent;
-import com.perpendicularwhales.warmup.components.Sprite;
+import com.perpendicularwhales.warmup.components.SpriteComponent;
 
 public class EntityFactory {
     private final World world;
@@ -22,7 +22,7 @@ public class EntityFactory {
         EntityEdit edit = world.createEntity().edit()
                 .add(new EmptyFieldComponent())
                 .add(new HexPositionComponent(x, y))
-                .add(new Sprite(fieldTexture));
+                .add(new SpriteComponent(fieldTexture));
         return edit.getEntityId();
     }
 

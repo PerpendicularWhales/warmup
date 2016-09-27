@@ -3,13 +3,13 @@ package com.perpendicularwhales.warmup.components;
 import com.artemis.Component;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Sprite extends Component {
+public class SpriteComponent extends Component {
     public Texture texture;
 
-    public Sprite() {
+    public SpriteComponent() {
     }
 
-    public Sprite(Texture texture) {
+    public SpriteComponent(Texture texture) {
         this.texture = texture;
     }
 }
