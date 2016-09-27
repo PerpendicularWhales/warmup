@@ -34,7 +34,7 @@ public class RenderingSystem extends EntityProcessingSystem {
         // TODO: somehow draw entity
         Sprite sprite = spriteMapper.get(e);
 
-        batch.draw(sprite.getTexture(), 100, 100);
+        batch.draw(sprite.texture, 100, 100);
     }
 
     @Override

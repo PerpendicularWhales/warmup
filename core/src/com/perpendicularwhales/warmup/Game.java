@@ -1,14 +1,13 @@
 package com.perpendicularwhales.warmup;
 
-import com.artemis.World;
-import com.artemis.WorldConfiguration;
-import com.artemis.WorldConfigurationBuilder;
+import com.artemis.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.perpendicularwhales.warmup.systems.HexRenderingSystem;
+import com.perpendicularwhales.warmup.hex.AxialHexMaps;
+import com.perpendicularwhales.warmup.hex.HexConfiguration;
+import com.perpendicularwhales.warmup.hex.HexOrientation;
 
 public class Game extends ApplicationAdapter {
 
@@ -20,11 +19,24 @@ public class Game extends ApplicationAdapter {
 				.build();
 
 		OrthographicCamera camera = new OrthographicCamera();
-		camera.setToOrtho(false, 800, 480);
-		configuration.register(camera);
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        HexConfiguration hexConfiguration = new HexConfiguration(HexOrientation.POINTY_TOPPED, (int)(40f / Math.sqrt(3)));
+
+        configuration.register(camera);
+        configuration.register(hexConfiguration);
+        //Wires only work for systems, managers so normal objects cannot be injected
+        configuration.register(new AxialHexMaps(hexConfiguration));
+        configuration.setSystem(HexRenderingSystem.class);
 
 		world = new World(configuration);
-	}
+
+        EntityFactory entityFactory = new EntityFactory(world);
+        for (int i = 3; i < 13; i++) {
+            for (int j = 3; j < 13; j++) {
+                entityFactory.createEmptyField(i, j);
+            }
+        }
+    }
 
 	@Override
 	public void render () {

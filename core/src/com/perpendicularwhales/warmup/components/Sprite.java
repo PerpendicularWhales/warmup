@@ -4,17 +4,12 @@ import com.artemis.Component;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Sprite extends Component {
+    public Texture texture;
 
-    private Texture texture;
+    public Sprite() {
+    }
 
-    public Sprite() {}
-
-    public void init(Texture texture) {
+    public Sprite(Texture texture) {
         this.texture = texture;
     }
-
-    public Texture getTexture() {
-        return this.texture;
-    }
-
 }
