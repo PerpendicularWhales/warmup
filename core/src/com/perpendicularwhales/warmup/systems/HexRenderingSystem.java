@@ -20,6 +20,7 @@ public class HexRenderingSystem extends IteratingSystem {
     @Wire private OrthographicCamera camera;
     @Wire private AxialHexMaps axialHexMaps;
     @Wire private SpriteBatch batch;
+    @Wire(name = "board translation") private Vector2 boardTranslation;
 
     private ComponentMapper<HexPositionComponent> hexPositionComponentMapper;
     private ComponentMapper<EmptyFieldComponent> emptyFieldComponentMapper;
@@ -59,12 +60,13 @@ public class HexRenderingSystem extends IteratingSystem {
 
         projectPositionToScreenPosition();
 
+        onScreenPosition.add(boardTranslation);
         //imo camera should scale it by itself but it doesn't work xD
         //should check working of camera and batch later on
         batch.draw(spriteComponent.texture,
                 onScreenPosition.x, onScreenPosition.y,
-                spriteComponent.texture.getWidth() / camera.zoom,
-                spriteComponent.texture.getHeight() / camera.zoom);
+                spriteComponent.texture.getRegionWidth() / camera.zoom,
+                spriteComponent.texture.getRegionHeight() / camera.zoom);
     }
 
     private void projectPositionToScreenPosition() {

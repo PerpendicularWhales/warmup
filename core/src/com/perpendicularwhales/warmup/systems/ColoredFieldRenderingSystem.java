@@ -20,6 +20,7 @@ public class ColoredFieldRenderingSystem extends IteratingSystem{
     @Wire private OrthographicCamera camera;
     @Wire private AxialHexMaps axialHexMaps;
     @Wire private SpriteBatch batch;
+    @Wire(name = "board translation") private Vector2 boardTranslation;
 
     private final Vector2 positionVector;
     private final Vector3 tmpVectorForProjection;
@@ -56,17 +57,19 @@ public class ColoredFieldRenderingSystem extends IteratingSystem{
 
         axialHexMaps.hexPositionToPixelPosition(hexPositionComponent.hexPosition, positionVector);
 
-        positionVector.sub(spriteComponent.texture.getWidth() / 2, spriteComponent.texture.getHeight() / 2);
+        positionVector.sub(spriteComponent.texture.getRegionWidth() / 2, spriteComponent.texture.getRegionHeight() / 2);
 
         tmpVectorForProjection.set(positionVector, 0);
         camera.project(tmpVectorForProjection);
         positionVector.set(tmpVectorForProjection.x, tmpVectorForProjection.y);
 
+        positionVector.add(boardTranslation);
+
         batch.setColor(colorComponent.color);
 
         batch.draw(spriteComponent.texture,
                 positionVector.x, positionVector.y,
-                spriteComponent.texture.getWidth() / camera.zoom,
-                spriteComponent.texture.getHeight() / camera.zoom);
+                spriteComponent.texture.getRegionWidth() / camera.zoom,
+                spriteComponent.texture.getRegionHeight() / camera.zoom);
     }
 }

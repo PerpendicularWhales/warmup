@@ -36,4 +36,14 @@ public class HexConfiguration {
         }
         throw new RuntimeException("Unsupported Hex Orientation");
     }
+
+    public int getIntDirectionFromRelativeAxialDirection(int x, int y) {
+        switch (hexOrientation) {
+            case POINTY_TOPPED:
+                return PointyTopAxialDirection.arrayIndexFromDirection(x, y);
+            case FLAT_TOPPED:
+        }
+        throw new RuntimeException("Unsupported Hex Orientation");
+    }
+
 }

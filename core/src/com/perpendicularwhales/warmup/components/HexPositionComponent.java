@@ -10,6 +10,10 @@ public class HexPositionComponent extends Component {
         hexPosition = new HexPosition(x, y);
     }
 
+    public HexPositionComponent(HexPosition hexPosition) {
+        this.hexPosition = hexPosition;
+    }
+
     public HexPositionComponent() {
     }
 }
