@@ -23,6 +23,7 @@ public class Game extends ApplicationAdapter {
 
 		OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.zoom = 0.9f;
         HexConfiguration hexConfiguration = new HexConfiguration(HexOrientation.POINTY_TOPPED, (int)(40f / Math.sqrt(3)));
 
         configuration.register(new SpriteBatch());

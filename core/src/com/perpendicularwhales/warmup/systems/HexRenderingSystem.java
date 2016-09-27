@@ -37,7 +37,6 @@ public class HexRenderingSystem extends IteratingSystem {
 
     @Override
     protected void begin() {
-        camera.zoom = 0.9f;
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
