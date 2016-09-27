@@ -3,8 +3,10 @@ package com.perpendicularwhales.warmup;
 import com.artemis.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.perpendicularwhales.warmup.systems.ColoredFieldRenderingSystem;
 import com.perpendicularwhales.warmup.systems.HexRenderingSystem;
 import com.perpendicularwhales.warmup.hex.AxialHexMaps;
 import com.perpendicularwhales.warmup.hex.HexConfiguration;
@@ -29,6 +31,7 @@ public class Game extends ApplicationAdapter {
         //Wires only work for systems, managers so normal objects cannot be injected
         configuration.register(new AxialHexMaps(hexConfiguration));
         configuration.setSystem(HexRenderingSystem.class);
+        configuration.setSystem(ColoredFieldRenderingSystem.class);
 
 		world = new World(configuration);
 
@@ -38,6 +41,10 @@ public class Game extends ApplicationAdapter {
                 entityFactory.createEmptyField(i, j);
             }
         }
+
+        entityFactory.createColoredCircle(5, 5, Color.CHARTREUSE);
+        entityFactory.createColoredCircle(7, 9, Color.CYAN);
+        entityFactory.createColoredCircle(12, 4, Color.FOREST);
     }
 
 	@Override
