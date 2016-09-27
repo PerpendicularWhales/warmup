@@ -4,6 +4,7 @@ import com.artemis.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.perpendicularwhales.warmup.systems.HexRenderingSystem;
 import com.perpendicularwhales.warmup.hex.AxialHexMaps;
 import com.perpendicularwhales.warmup.hex.HexConfiguration;
@@ -22,6 +23,7 @@ public class Game extends ApplicationAdapter {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         HexConfiguration hexConfiguration = new HexConfiguration(HexOrientation.POINTY_TOPPED, (int)(40f / Math.sqrt(3)));
 
+        configuration.register(new SpriteBatch());
         configuration.register(camera);
         configuration.register(hexConfiguration);
         //Wires only work for systems, managers so normal objects cannot be injected

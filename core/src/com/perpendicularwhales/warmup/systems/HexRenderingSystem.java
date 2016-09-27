@@ -19,19 +19,18 @@ public class HexRenderingSystem extends IteratingSystem {
     @Wire private HexConfiguration hexConfiguration;
     @Wire private OrthographicCamera camera;
     @Wire private AxialHexMaps axialHexMaps;
+    @Wire private SpriteBatch batch;
 
     private ComponentMapper<HexPositionComponent> hexPositionComponentMapper;
     private ComponentMapper<EmptyFieldComponent> emptyFieldComponentMapper;
-    private ComponentMapper<SpriteComponent> spriteMapper;
 
-    private final SpriteBatch batch;
+    private ComponentMapper<SpriteComponent> spriteMapper;
 
     private final Vector2 onScreenPosition;
     private final Vector3 tmpVectorForProjection;
 
     public HexRenderingSystem() {
         super(Aspect.all(SpriteComponent.class, HexPositionComponent.class, EmptyFieldComponent.class));
-        batch = new SpriteBatch();
         onScreenPosition = new Vector2();
         tmpVectorForProjection = new Vector3();
     }
